@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <div className="homepage-container">
         <div className = "grid1-home-page-header">
-            <h1>TO DO LIST</h1>
+            <h1 >TO DO LIST</h1>
         </div>
 
         <div className = "grid2-to-do-list">
