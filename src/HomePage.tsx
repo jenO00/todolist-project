@@ -1,20 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './HomePage.css';
+import ListItem from './components/ListItem';
 
 function HomePage() {
   return (
     <div className="homepage-container">
         <div className = "grid1-home-page-header">
-            <h1 >TO DO LIST</h1>
+            <p id="welcome-text" >TO DO LIST</p>
         </div>
 
         <div className = "grid2-to-do-list">
-            <h2> here display what to do</h2>
+            <div id="paper">
+                <p>Here is the to do list</p>
+            </div>
         </div>
 
         <div className = "grid3-add-list">
-            <h3> here add to dos</h3>
+            <p id="add-text"> Lägg till nåt nytt att göra! </p>
+            <div id ="add-container">
+                <input type="text" id="add-input" placeholder="Laga matlådor"></input>
+                
+            </div>
+
         </div>
     </div>
   );
