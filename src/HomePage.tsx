@@ -1,26 +1,42 @@
 import React from 'react';
 import './HomePage.css';
 import ListItem from './components/ListItem';
+import checkmark from './resources/checkmark-circle-outline.svg';
+import flower from './resources/flower-outline.svg';
 
 function HomePage() {
   return (
     <div className="homepage-container">
         <div className = "grid1-home-page-header">
-            <p id="welcome-text" >TO DO LIST</p>
-        </div>
-
-        <div className = "grid2-to-do-list">
-            <div id="paper">
-                <p>Here is the to do list</p>
+            <div id="header-container">
+            <div id="welcome-container">
+                <p id="welcome-text" >TO DO LIST</p>
             </div>
+            <div id="flower-image-container">
+                <img src={flower} alt="flower-icon" id="flower-icon"/>
+            </div>
+           
         </div>
+        <hr id="header-hr"></hr>
+    </div>
 
-        <div className = "grid3-add-list">
-            <p id="add-text"> Lägg till nåt nytt att göra! </p>
-            <div id ="add-container">
-                <input type="text" id="add-input" placeholder="Laga matlådor"></input>
+    <div className = "grid2-to-do-list">
+        <div id="paper">
+            <p>Here is the to do list</p>
+        </div>
+    </div>
+
+    <div className = "grid3-add-list">
+        <p id="add-text"> Lägg till nåt nytt att göra! </p>
+        <div id ="add-container">
+            <div id="image-container">
+                <img src={checkmark} alt="checkmark" id="checkmark"/>
+            </div>
+            <div id="input-container">
+                <input type="text" id="add-input" placeholder="...Laga matlådor"></input>
+            </div>
                 
-            </div>
+        </div>
 
         </div>
     </div>
