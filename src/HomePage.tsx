@@ -5,7 +5,7 @@ import checkmark from './resources/checkmark-circle-outline.svg';
 import flower from './resources/flower-outline.svg';
 import paper from './resources/papper.png';
 import { useState, useEffect } from "react";
-import * as fs from 'fs';
+import FinishedItem from './components/FinishedItem';
 
 
 type Task = {
@@ -20,33 +20,38 @@ function HomePage() {
     const [unfinishedTasks, setUnfinishedTasks] = useState<Task[]>([]);
     const [isClicked, setIsClicked] = useState(false);
     const [finishedTasks, setFinishedTasks] = useState<Task[]>([]);
+    const [value, setValue] = useState("");
 
     useEffect(() => {
-        async function fetchData(){
-            const jsonString = await getJsonString();
-            console.log(jsonString);
-            localStorage.setItem('jsonString', JSON.stringify(jsonString));
-            setFinishedTasks(jsonString.finishedTasks);
-            setUnfinishedTasks(jsonString.unfinishedTasks);
+        const saved = localStorage.getItem("tasks");
+        //If there already are saved tasks, load them
+        if (saved) {
+            const data = JSON.parse(saved);
+            setFinishedTasks(data.finishedTasks);
+            setUnfinishedTasks(data.unfinishedTasks);
         }
-        fetchData();
-        
-    }, [])
+    }, []);
 
-    function addFinishedTask(task:Task){
-        setFinishedTasks([...finishedTasks, task]);
-    }
-    
-    function addUnfinishedTask(task:Task){
-        setUnfinishedTasks([...unfinishedTasks, task]);
+    function saveTasks(finished: Task[], unfinished: Task[]) {
+    localStorage.setItem("tasks", JSON.stringify({
+        finishedTasks: finished,
+        unfinishedTasks: unfinished
+    }));
+}
+    function addFinishedTask(task: Task) {
+        const updated = [...finishedTasks, task];
+        setFinishedTasks(updated);
+        saveTasks(updated, unfinishedTasks);
+        //remove from unfinished
+        const updatedUnfinished = unfinishedTasks.filter((t) => t.id !== task.id);
+        setUnfinishedTasks(updatedUnfinished);
     }
 
-    async function getJsonString() {
-        const response = await fetch('/tasks.json');
-        const data = await response.json();
-        return data;
+    function addUnfinishedTask(task: Task) {
+        const updated = [...unfinishedTasks, task];
+        setUnfinishedTasks(updated);
+        saveTasks(finishedTasks, updated);
     }
-
 
 
 
@@ -72,8 +77,8 @@ function HomePage() {
                     <ListItem  
                         key={task.id}
                         text = {task.text}
-                        onChange={() => setIsClicked(!isClicked)}/>
-                ))};
+                        onChange={() => addFinishedTask(task)}/>
+                ))}
                 
             </div>
             
@@ -81,16 +86,41 @@ function HomePage() {
     </div>
 
     <div className = "grid3-add-list">
-        <p id="add-text"> Lägg till nåt nytt att göra! </p>
         <div id ="add-container">
             <div id="image-container">
                 <img src={checkmark} alt="checkmark" id="checkmark"/>
             
             </div>
             <div id="input-container">
-                <input type="text" id="add-input" placeholder="...Laga matlådor"></input>
+                <input 
+                    type="text" 
+                    id="add-input" 
+                    value={value}
+                    placeholder="...Laga matlådor"
+                    onChange={(e) => setValue(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            const newTask: Task = {
+                                id: unfinishedTasks.length + finishedTasks.length + 1,
+                                text: value,
+                                createdAt: new Date()
+                            }
+                            addUnfinishedTask(newTask);
+                            setValue("");
+                        }
+                    }}></input>
             </div>
                 
+        </div>
+        <div id = "grid4-finished-list">
+            <div id="finished-list-container">
+                {finishedTasks.map((task) => (
+                    <FinishedItem
+                    key = {task.id}
+                    text = {task.text}/>
+                )
+            )};
+            </div>
         </div>
 
         </div>

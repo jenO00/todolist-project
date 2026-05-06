@@ -1,0 +1,36 @@
+.finished-item-container{
+    display: flex;
+    background-image: url('../resources/postit.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    min-width: 200px;
+    min-height: 150px;
+
+}
+
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  border-radius:50%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#finished-list-container{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+}
+
+.finished-text {
+    margin-left: 10px;
+    font-size: 20px;
+}
