@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import './ListItem.css';
 
-class ListItem extends Component {
+type ListItemProps = {
+    text: string;
+    onChange?: () => void;
+}
+class ListItem extends Component<ListItemProps>{
+
     render() {
         return (
         <div className = "list-item-container">
-            <p>List item</p>
+           <label className="container">
+                <input type="checkbox" checked={false} onChange={this.props.onChange}/>{this.props.text}
+                <span className="checkmark"></span>
+            </label>
         </div>
         );
     };

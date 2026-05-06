@@ -4,7 +4,7 @@
     grid-template-rows: 1fr 3fr;
     gap:10px;
     justify-content:left;
-    background-color: rgb(247, 148, 189);
+    background-color: rgb(252, 196, 219);
 }
 
 
@@ -12,7 +12,7 @@
 .grid1-home-page-header{
     grid-column: 1 / 3;
     grid-row: 1;
-    background-color:rgb(247, 148, 189);
+    background-color:rgb(252, 196, 219);
 }
 
 #welcome-text{
@@ -58,18 +58,33 @@
 .grid2-to-do-list{
     display: flex;
     grid-column:2 / 3;
-    grid-row: 2/3;
-    background-color: aqua;
+    grid-row: 1/3;
+    background-color: rgb(252, 196, 219);
     justify-content:center;
     align-items:center;
+    margin-top:0.5rem;
 }
 
-#paper{
-    background-color:white;
-    width:80%;
-    height: 80%;
+#paper-div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    min-height:500px;
+    background-image: url('./resources/papper.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 40px; 
 }
 
+#list-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    margin-top:100px;
+}
 /*--------------to do list----------------*/
 
 /*--------------add to list----------------*/
