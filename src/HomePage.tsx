@@ -57,11 +57,38 @@ function HomePage() {
     }
 
     function addUnfinishedTask(task: Task) {
+        task.priority = false; //reset it
         const updated = [...unfinishedTasks, task];
         setUnfinishedTasks(updated);
         saveTasks(finishedTasks, updated);
     }
 
+    /**Star stuff */
+    function addPriority(id:number){
+        console.log("Clicked item with id: " + id);
+        const tasks = localStorage.getItem("tasks");
+        if(tasks){
+            const data = JSON.parse(tasks);
+            const unfinishedTasks = data.unfinishedTasks;
+            const currTask = unfinishedTasks.find((t: {id: number;}) => t.id === id);
+            if (currTask){
+                if(currTask.priority === true){
+                    currTask.priority = false;
+                }
+                else{
+                    currTask.priority = true;
+                }
+            }
+            const updated = unfinishedTasks.map((t: {id:number}) => t.id === id ? currTask : t);
+            setUnfinishedTasks(updated);
+            saveTasks(finishedTasks, updated);
+            console.log("Updated task: " + JSON.stringify(currTask));
+        }
+        else{
+            console.log("NO task found");
+        }
+    }
+    
 
 
   return (
@@ -84,11 +111,13 @@ function HomePage() {
             <div id = "list-container">
                 {unfinishedTasks.map((task) => (
                     <ListItem  
+                        id = {task.id}
                         key={task.id}
                         text = {task.text}
                         dueDate = {task.dueDate}
                         priority = {task.priority}
-                        onChange={() => addFinishedTask(task, task.id)}/>
+                        onChange={() => addFinishedTask(task, task.id)}
+                        onTogglePriority={() => addPriority(task.id)}/>
                 ))}
                 
             </div>

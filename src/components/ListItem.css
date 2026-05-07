@@ -4,12 +4,16 @@
    src: url("/src/fonts/BalonkuRegular-la1w.otf");
 }
 
+.list-item-container{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
 /* The container */
 .container {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
   border-radius:50%;
@@ -67,4 +71,21 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+#star-container{
+  display:flex;
+  justify-content:flex-start;
+  margin-right:10px;
+  background-image:url('../resources/star-outline.png');
+  width:40px;
+  height:40px;
+}
+
+#star-container:hover{
+  background-image:url('../resources/star-filled.png');
+}
+
+#star-container:after{
+  background-image:url('../resources/star-filled.png');
 }
