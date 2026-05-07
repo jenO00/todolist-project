@@ -112,20 +112,20 @@ function HomePage() {
             </div>
                 
         </div>
-        <div id = "grid4-finished-list">
-            <div id="finished-list-container">
-                {finishedTasks.map((task) => (
-                    <FinishedItem
-                    key = {task.id}
-                    text = {task.text}/>
-                )
-            )}
-            </div>
-        </div>
-
+    </div>
+    <div id = "grid4-finished-list">
+        <div id="finished-list-container">
+            {finishedTasks.map((task) => (
+                <FinishedItem
+                key = {task.id}
+                text = {task.text}/>
+            )
+        )}
         </div>
     </div>
-  );
+
+</div>
+);
 }
 
 export default HomePage;
