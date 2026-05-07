@@ -1,11 +1,12 @@
 .homepage-container{
     display:grid;
     grid-template-columns: 2fr 3fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
     gap:10px;
     justify-content:left;
     background-color: rgb(252, 196, 219);
     max-height:100vh;
+     overflow-y:hidden;
 }
 
 
@@ -90,12 +91,12 @@
 .grid3-add-list{
     grid-column:1;
     grid-row: 2;
-    background-color:transparent;
+    height:fit-content;
 }
 
 #header-container{
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:flex-start;
 }
 
@@ -126,7 +127,7 @@
 #input-container{
     display:flex;
     justify-content:flex-start;
-    align-items:center;
+    align-items:flex-start;
     width:90%;
 }
 
@@ -139,7 +140,7 @@
 #image-container{
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     width:10%;
 }
 
@@ -160,6 +161,8 @@
     grid-column:1;
     grid-row:3;
     background-color:aqua;
+    max-height:100vh;
+    overflow-y:hidden;
 }
 
 /*----------FONTS------------*/

@@ -119,7 +119,7 @@ function HomePage() {
                     key = {task.id}
                     text = {task.text}/>
                 )
-            )};
+            )}
             </div>
         </div>
 

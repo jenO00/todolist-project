@@ -1,15 +1,14 @@
-.finished-item-container{
+.finished-item-postit{
     display: flex;
     background-image: url('../resources/postit.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     padding: 20px;
-    min-width: 200px;
-    min-height: 150px;
+    min-width: fit-content;
+    min-height: fit-content;
 
 }
 
-/* The container */
 .container {
   display: block;
   position: relative;
@@ -24,13 +23,6 @@
   user-select: none;
 }
 
-#finished-list-container{
-    display:flex;
-    flex-direction:column;
-    flex-wrap:wrap;
-}
-
 .finished-text {
-    margin-left: 10px;
     font-size: 20px;
 }
