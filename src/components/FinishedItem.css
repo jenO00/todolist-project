@@ -1,28 +1,88 @@
 .finished-item-postit{
     display: flex;
     background-image: url('../resources/postit.png');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     padding: 20px;
-    min-width: fit-content;
-    min-height: fit-content;
-
+    align-items:center;
+    width:150px;
+    height:150px;
 }
 
-.container {
+.container-finished {
   display: block;
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
-  border-radius:50%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 
 .finished-text {
     font-size: 20px;
+    color:rgb(51, 31, 31);
+    font-weight:bold;
+    display: block;
+    overflow-wrap: normal;
+}
+
+/* När den är checked */
+.container-finished input:checked ~ .checkmark-finished {
+  background-color: rgb(255, 66, 157);
+}
+
+/* När den är checked OCH du hovrar */
+.container-finished:hover input:checked ~ .checkmark-finished {
+  background-color: #c22d8e;
+}
+
+/* Create a custom checkbox */
+.checkmark-finished {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 1px solid rgb(23, 164, 58);
+  background-color: #eee;
+}
+
+.container-finished input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container-finished input:checked ~ .checkmark-finished {
+  background-color: rgb(255, 66, 157);
+}
+
+.checkmark-finished:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container-finished input:checked ~ .checkmark-finished:after {
+  display: block;
+}
+
+.container-finished .checkmark-finished:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

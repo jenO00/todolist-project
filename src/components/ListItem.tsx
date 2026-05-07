@@ -4,6 +4,8 @@ import './ListItem.css';
 type ListItemProps = {
     text: string;
     onChange?: () => void;
+    dueDate?: Date;
+    priority?: boolean;
 }
 class ListItem extends Component<ListItemProps>{
 

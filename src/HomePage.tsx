@@ -37,7 +37,16 @@ function HomePage() {
         finishedTasks: finished,
         unfinishedTasks: unfinished
     }));
-}
+    }
+
+    function handleFinishedClick(task: Task){
+        const updatedFinished = finishedTasks.filter((t) => t.id !== task.id);
+        setFinishedTasks(updatedFinished);
+        const updatedUnfinished = [...unfinishedTasks, task];
+        setUnfinishedTasks(updatedUnfinished);
+        saveTasks(updatedFinished, updatedUnfinished);
+    }
+
     function addFinishedTask(task: Task, id:number) {
         const updated = [...finishedTasks, task];
         setFinishedTasks(updated);
@@ -77,6 +86,8 @@ function HomePage() {
                     <ListItem  
                         key={task.id}
                         text = {task.text}
+                        dueDate = {task.dueDate}
+                        priority = {task.priority}
                         onChange={() => addFinishedTask(task, task.id)}/>
                 ))}
                 
@@ -118,7 +129,8 @@ function HomePage() {
             {finishedTasks.map((task) => (
                 <FinishedItem
                 key = {task.id}
-                text = {task.text}/>
+                text = {task.text}
+                onChange = {() => handleFinishedClick(task)}/>
             )
         )}
         </div>
