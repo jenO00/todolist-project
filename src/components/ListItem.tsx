@@ -31,5 +31,6 @@ class ListItem extends Component<ListItemProps>{
         </div>
         );
     };
+    
 }
 export default ListItem;

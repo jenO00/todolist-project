@@ -89,9 +89,16 @@ function HomePage() {
         }
     }
     
+    function checkIfPriorityExists(tasks: Task[]){
+        return tasks.some((task) => task.priority === true);
+    }
 
 
   return (
+      <>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        </head>
     <div className="homepage-container">
         <div className = "grid1-home-page-header">
             <div id="header-container">
@@ -109,16 +116,34 @@ function HomePage() {
     <div className = "grid2-to-do-list">
         <div id="paper-div">
             <div id = "list-container">
-                {unfinishedTasks.map((task) => (
-                    <ListItem  
-                        id = {task.id}
-                        key={task.id}
-                        text = {task.text}
-                        dueDate = {task.dueDate}
-                        priority = {task.priority}
-                        onChange={() => addFinishedTask(task, task.id)}
-                        onTogglePriority={() => addPriority(task.id)}/>
-                ))}
+                <label id="prio-tasks">Prioriterat</label>
+                <hr id = "prio-hr"></hr>
+                {checkIfPriorityExists(unfinishedTasks) ? (
+                    unfinishedTasks.filter((task) => task.priority).map((task) => (
+                        <ListItem
+                            id = {task.id}
+                            key={task.id}
+                            text = {task.text}
+                            dueDate = {task.dueDate}
+                            priority = {task.priority}
+                            onChange={() => addFinishedTask(task, task.id)}
+                            onTogglePriority={() => addPriority(task.id)}/>
+                    ))) : (<p>Yay! Inget prioriterat att göra!</p>)
+                    
+                }
+                <hr id = "prio-hr"></hr>
+                <label id="normal-tasks">Att göra:</label>
+                {unfinishedTasks.filter((task) => !task.priority).map((task) => (
+                        <ListItem  
+                            id = {task.id}
+                            key={task.id}
+                            text = {task.text}
+                            dueDate = {task.dueDate}
+                            priority = {task.priority}
+                            onChange={() => addFinishedTask(task, task.id)}
+                            onTogglePriority={() => addPriority(task.id)}/>
+                    ))}
+                
                 
             </div>
             
@@ -166,6 +191,7 @@ function HomePage() {
     </div>
 
 </div>
+</>
 );
 }
 

@@ -159,6 +159,19 @@
 
 }
 
+#prio-hr{
+    width:80%;
+    margin-left:0.2rem;
+    border: 2px solid rgba(211, 86, 161, 0.8);
+    border-radius:50px;
+}
+
+#prio-tasks, #normal-tasks{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:18pt;
+    font-weight:bold;
+    color:rgba(211, 86, 161, 0.8);
+}
 /*--------------add to list----------------*/
 
 #grid4-finished-list{
