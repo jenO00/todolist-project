@@ -38,13 +38,13 @@ function HomePage() {
         unfinishedTasks: unfinished
     }));
 }
-    function addFinishedTask(task: Task) {
+    function addFinishedTask(task: Task, id:number) {
         const updated = [...finishedTasks, task];
         setFinishedTasks(updated);
-        saveTasks(updated, unfinishedTasks);
         //remove from unfinished
-        const updatedUnfinished = unfinishedTasks.filter((t) => t.id !== task.id);
+        const updatedUnfinished = unfinishedTasks.filter((t) => t.id !== id);
         setUnfinishedTasks(updatedUnfinished);
+        saveTasks(updated, updatedUnfinished);
     }
 
     function addUnfinishedTask(task: Task) {
@@ -77,7 +77,7 @@ function HomePage() {
                     <ListItem  
                         key={task.id}
                         text = {task.text}
-                        onChange={() => addFinishedTask(task)}/>
+                        onChange={() => addFinishedTask(task, task.id)}/>
                 ))}
                 
             </div>
